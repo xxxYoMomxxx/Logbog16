@@ -1,25 +1,25 @@
 body {
-  background-color: rgba(91, 146, 229, 0);
+  background-color: rgb(44, 5, 57);color:white;
 }
+
 
 /* overskrift h1 design */
 h1{
 font-style: bold;
 font-size: 60px;
 }
+p{
+  
 
-pre{
-  background-color: lightgray;
 }
-
 
 .boxFloatRighe{
 float: right;
-background-color: rgb(200,100,100);
+background-color: rgb(38, 2, 30);
 width: 40%;
 height: 40%;
 overflow: hidden;
-font-size: 40;
+font-size: 50;
 }
 
 img {
