@@ -8,9 +8,10 @@ h1{
 font-style: bold;
 font-size: 60px;
 }
-p{
-  
 
+
+#main_page_overskrift {
+  text-align: center;
 }
 
 .boxFloatRighe{
@@ -28,3 +29,5 @@ img {
   margin-right: auto;
   width: 50%;
 }
+
+
