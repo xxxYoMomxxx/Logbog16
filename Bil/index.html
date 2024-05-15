@@ -1,0 +1,93 @@
+<div>Teachable Machine Image Model - p5.js and ml5.js</div>
+<script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/addons/p5.dom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
+<script type="text/javascript">
+  // Classifier Variable
+  let classifier;
+  // Model URL
+  let imageModelURL = './';
+  
+  // Video
+  let video;
+  let flippedVideo;
+  // To store the classification
+  let label = "";
+  let img;
+  let bil;
+  let x = 0;
+  let y = 0;
+
+  // Load the model first
+  function preload() {
+    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
+    img = loadImage('Track.png');
+    bil = loadImage('Bimmer.png');
+  }
+
+  function setup() {
+    createCanvas(900, 900);
+    // Create the video
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
+
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
+  }
+
+  function draw() {
+    background(100);
+    image(img,0,0);
+    // Draw the video
+    image(flippedVideo, 0, 0);
+
+    // Draw the label
+    fill(255);
+    textSize(16);
+    textAlign(CENTER);
+    text(label, width - 750, height - 640);
+
+    //Medtag confidence
+    if (label=="Venstre"){
+      x += -1;
+    }
+    if (label=="Højre"){
+      x += 1;
+    }
+    if (label=='STOP'){
+    
+    }
+    if (label=='Ligeud'){
+        y += -1;
+    }
+    if (label=='Bagud'){
+        y += 1;
+    }
+    image(bil,500+x,840+y,80,80);
+  }
+
+  // Get a prediction for the current video frame
+  function classifyVideo() {
+    flippedVideo = ml5.flipImage(video)
+    classifier.classify(flippedVideo, gotResult);
+    flippedVideo.remove();
+
+  }
+
+  // When we get a result
+  function gotResult(error, results) {
+    // If there is an error
+    if (error) {
+      console.error(error);
+      return;
+    }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+    label = results[0].label;
+    console.log(label);
+    // Classifiy again!
+    classifyVideo();
+  }
+</script>
