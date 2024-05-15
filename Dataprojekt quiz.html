@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+<body background="baggrund.jpg" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+  <h1 id="titlebox">HIGHER / LOWER</h1>
+
+<h2 style="text-align: center;" id="spørgsmål">TRYK NÆSTE</h2>
+<h2 style="font-family: 'Arial'; text-align: center;"  id="gæt"></h2>
+
+<img id="myImage" src="fight.gif" style="display: block; margin-left: auto; margin-right: auto; height: 220px;">
+<br>
+<div>
+  <button type="button" id="knapid" onclick="higher()">HIGHER</button>
+  <button type="button" id="knapid" onclick="lower()">LOWER</button>
+  <button type="button" id="knapid" onclick="ny()">Næste</button>
+</div>
+
+
+</body>
+</html>
+
+<script>
+  let x;
+  let FN;
+  let listeMedValgte = [];
+  let data;
+  let button;
+  var overskrift = null;
+  var beskrivelse = null;
+  var progression = null;
+
+  function higher() {
+    if (gæt < svar) {
+      console.log("success");
+      document.getElementById("gæt").style.backgroundColor="green";
+    }
+    if (gæt > svar) {
+      console.log("fail");
+      document.getElementById("gæt").style.backgroundColor="red";
+    }
+} 
+
+function lower() {
+    if (gæt > svar) {
+      console.log("sucess");
+      document.getElementById("gæt").style.backgroundColor="green";
+    }
+    if (gæt < svar) {
+      console.log("fail")
+      document.getElementById("gæt").style.backgroundColor="red";
+    }
+
+}
+
+function ny() {
+  var pic;
+  x = Math.floor(Math.random()*data.length+1);
+  console.log(x);
+  genererTekst(x);
+  pic = "jpg"+x+".jpg?raw=true"  
+  document.getElementById('spørgsmål').innerHTML = spørgsmål;
+  document.getElementById('gæt').innerHTML = gæt;
+  //document.getElementById('svar').innerHTML = svar;
+  document.getElementById('myImage').src = pic;
+  document.getElementById("gæt").style.backgroundColor=""
+}
+
+function genererTekst(x){
+  for (var i = 0; i < data.length; i++) {
+      if (data[i]["ID"] == x) {
+        spørgsmål = data[i]['spørgsmål']; 
+        gæt = data[i]['gæt'];
+        svar = data[i]['svar'];
+        input = data[i]['input']
+ 
+        break; // exit efter loop
+      }
+    }
+}
+window.onload = function() {
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "FN.csv", true);
+xhr.responseType = "text";
+xhr.onload = function() {
+  data = Papa.parse(xhr.responseText, {
+    header: true // set this to true if the first row contains the header names
+  }).data;
+};
+xhr.send();
+}
+</script>

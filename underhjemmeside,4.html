@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="myStyle.css">
+<title>Bjørnens portfolie</title>
+
+
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="index.html">Home</a>
+        <a href="underhjemmeside.html">Hvad er internettet?</a>
+        <a href="webteknologier.html">Hjemmeside forløb</a>
+        <a href="underhjemmeside,2.html">billedemanipulation</a>
+        <a href="underhjemmeside,3.html">Ai/machine learning</a>
+        <a href="underhjemmeside,4.html">Database Forløb</a>
+        
+
+      </div>  
+      
+      <div>
+        <h1 id="main_page_overskrift">Database forløb</h1>
+        <p>I dette forløb har mig og Louis lavet et higher lower <a href="database-projekt/Dataprojekt quiz.html">spil</a>, hvor man får et spørgsmål og et tal hvor man så skal <br>
+           gætte om det rigtige tal er højere eller lavere end tallet man får vist.
+
+        </p>
+        </div>
+        
+        <h2> Hvordan fungerer det?</h2>
+        <img src="database-projekt/Database.png">
+        
+
+<p> Her har vi lavet en simpel og lille database, med en primærnøgle som er et Id for spørgsmålet. så har vi tre entiteter: spørgsmål, gæt og svar <br>
+    Spørgsmål entiteten er bare hvad spørgsmålet konkret er, gæt er bare tallet som man skal gætte om svaret er større eller mindre end, og svar er <br>
+    selvfølgelig bare det rigtige svar til spørgsmålet. Denne database refererer vi til i vores javascript så vi kan hente data og køre funktioner.
+     
+</p>
+
+<img src="database-projekt/kodestump_database.png">
+
+<p> I denne kodestump har vi lavet en af vores knapper, altså "higher" knappen. Det har vi gjort ved at lave en funktion der hedder "higher" <br>
+    Derefter har vi lavet en if statement der siger at hvis tallet som vi viser brugeren er lavere end det rigtige svar, så skal den sende teksten <br>
+    "succses" til console. dette gør at man kan se når man har givet et svar der er rigtigt.
+
+</p>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+
+</body>
+</html>
